@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hesap Makinesi Uygulaması</title>
+    <link rel="stylesheet" href="css/mediaquaries.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <style>
+      body {
+        background-color: #ecdfcc;
+      }
+
+      header h1 {
+        text-align: center;
+        box-sizing: border-box;
+        color: #ecdfcc;
+        background-color: #181c14;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        height: 50px;
+        color: #ecdfcc;
+        background-color: #181c14;
+        text-align: center;
+        padding-top: 17px;
+      }
+
+      .footer a {
+        color: #ecdfcc;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <h1>Hesap Makinesi Uygulaması</h1>
+    </header>
+
+    <main class="main">
+      <div class="code-box">
+        <pre><code>
+          #include < iostream >
+          #include < locale.h > // dil kütüphanesi
+          #include < math.h > 
+          using namespace std;
+          int sayi1, sayi2;
+          char isaret;
+          char devam;
+          
+          
+          int main()
+          {
+            setlocale(LC_ALL, "Turkish");
+            
+          
+            do
+            {
+              cout << "Yapmak istediğiniz işlemi seçiniz (+, -, *, /)" << endl;
+              cin >> isaret;
+              cout << "Lütfen 1. sayıyı giriniz" << endl;
+              cin >> sayi1;
+              cout << "Lütfen 2, sayiyi giriniz" << endl;
+              cin >> sayi2;
+            
+              switch (isaret)
+              {
+              case '*':
+                cout << "Sonuç = " << sayi1 * sayi2;
+                break;
+              case '/':
+                cout << "Sonuç = " << sayi1 / sayi2;
+                break;
+              case '+':
+                cout << "Sonuç = " << sayi1 + sayi2;
+                break;
+              case '-':
+                cout << "Sonuç = " << sayi1 - sayi2;
+                break;
+              default:
+                break;
+              }
+          
+            } while (true);
+          
+              cout << "Devam etmek istiyor musun? Evet(y), Hayır(n) :" << endl;
+              cin >> devam;
+          
+              
+            
+          
+            
+          
+            return 0;
+            
+          
+          
+          }
+      </code></pre>
+      </div>
+      //pre,metni oldugu gibi aktarir.
+    </main>
+
+    <footer class="footer">
+      <div class="footer2">
+        <a href="index.html" class="btn"> Geri Dön </a>
+      </div>
+    </footer>
+  </body>
+</html>

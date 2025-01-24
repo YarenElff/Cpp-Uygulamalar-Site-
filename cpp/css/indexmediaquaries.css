@@ -1,0 +1,25 @@
+@media (min-width: 992px) {
+  .continer {
+    margin-top: 10px;
+    box-sizing: border-box;
+    width: 33%;
+    display: inline-block;
+    background-color: #181c14;
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .main-d {
+    width: auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .continer {
+    margin-top: 20px;
+    width: 300px;
+    display: inline-block;
+    background-color: #181c14;
+    text-align: center;
+  }
+}

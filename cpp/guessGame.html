@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sayı Tahmin Uygulaması</title>
+    <link rel="stylesheet" href="css/mediaquaries.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <style>
+      body {
+        background-color: #ecdfcc;
+      }
+
+      header h1 {
+        text-align: center;
+        box-sizing: border-box;
+        color: #ecdfcc;
+        background-color: #181c14;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        height: 50px;
+        color: #ecdfcc;
+        background-color: #181c14;
+        text-align: center;
+        padding-top: 17px;
+      }
+
+      .footer a {
+        color: #ecdfcc;
+        text-decoration: none;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <h1>Sayı Tahmin Uygulaması</h1>
+    </header>
+
+    <main class="main">
+        <div class="code-box">
+          <pre><code>
+            #include < iostream >
+            #include < string >
+            #include < locale.h >
+            #include < cstdlib >
+            #include < ctime >
+            #include < iomanip >
+            using namespace std;
+
+            int main() {
+                setlocale(LC_ALL, "Turkish");
+
+                int kendiSayim;
+                cout << "1 ile 10 arasında bir sayı tutun ve tuttuğunuz sayıyı giriniz :" << endl;
+                cin >> kendiSayim;
+
+                srand(static_cast<unsigned int>(time(0))); // Rastgele sayı üreteci başlat
+
+                int rastgeleSayi = rand() % 10 + 1; // 1-10 arası rastgele sayı üret
+                cout << "Bilgisayarın tuttuğu sayı:" << rastgeleSayi << endl;
+
+                if (rastgeleSayi == kendiSayim) {
+                    cout << "Tebrikler kazandınız";
+                }
+
+                else {
+                    cout << "Üzgünüz kaybettiniz";
+                }
+            }
+          </code></pre>
+        </div>      
+      </main> 
+      
+      <footer class="footer">
+        <div class="footer2">
+          <a href="index.html" class="btn"> Geri Dön </a>
+        </div>
+      </footer>
+    </body>
+  </html>
+  

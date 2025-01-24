@@ -1,0 +1,107 @@
+@media (min-width: 1400px) {
+  .code-box {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .code-box {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .code-box {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .code-box {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .code-box {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto 100px;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}
+
+@media (max-width: 575px) {
+  .code-box {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    margin-bottom: 100px;
+    padding: 20px;
+    background-color: #3c3d37;
+    color: #ecdfcc;
+    border: 2px solid #3c3d37;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    overflow-x: auto;
+    white-space: pre-wrap; /*textteki bosluklari korur*/
+  }
+}

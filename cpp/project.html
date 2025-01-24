@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lojistik Planlama(Proje)</title>
+    <link rel="stylesheet" href="css/mediaquaries.css">
+    <link rel="stylesheet" href="css/button.css" />
+    <style>
+      body {
+        background-color: #ecdfcc;
+      }
+      header h1 {
+        text-align: center;
+        color: #ecdfcc;
+        background-color: #181c14;
+      }
+
+
+      .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        height: 50px;
+        color: #ecdfcc;
+        background-color: #181c14;
+        text-align: center;
+        padding-top: 17px;
+      }
+
+      .footer a {
+        text-decoration: none;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+
+    <header id="header">
+        <h1>Lojistik Planlama Uygulaması</h1>
+      </header>
+
+      <main>
+        <div class=" code-box">
+            <pre>
+                <code>
+                    #include < iostream >
+                    #include < cstdlib >
+                    #include < ctime >
+                    #include < fstream > //Dosyayı yazdrıabilmek için gerekli olan kütüphane.
+                    
+                    using namespace std;
+                    
+                    const int N = 10;
+                    int matris[N][N] = { 0 };
+                    bool ziyaretEdilen[N][N] = { false };  
+                    
+                    const int secilenNoktalar = 5;
+                    pair<int, int> secilenLokasyonlar[5];  //pair : iki veriyi birleştirerek tek bir nesne olarak saklar
+                    pair<int, int> kNoktasi = { 0, 0 };    
+                    
+                    int toplamMaliyet = 0;  
+                    
+                    void matrisOlustur();
+                    void musteriBelirle();
+                    void ciz(char karakter, int adet);
+                    void hareketEt();
+                    void matrisiYazdir();
+                    void dosyayaKaydet();  
+                    
+                    int main() {
+                        srand(time(0));
+                    
+                        matrisOlustur();  
+                        hareketEt();      
+                    
+                        cout << "Gidis - Donus Yol Toplam Yol = " << toplamMaliyet << endl;
+                    
+                        dosyayaKaydet(); 
+                    }
+                    
+                    void matrisOlustur() {
+                        
+                        for (int i = 0; i < N; i++) {
+                            for (int j = 0; j < N; j++) {
+                                if (i == 0 && j == 0) {
+                                    matris[i][j] = 'K';  
+                                }
+                                else {
+                                    matris[i][j] = rand() % 100;  
+                                }
+                            }
+                        }
+                    
+                        musteriBelirle(); 
+                    }
+                    
+                    void musteriBelirle() {
+                        
+                        for (int i = 0; i < secilenNoktalar; ++i) {
+                            int satir = rand() % N;
+                            int sutun = rand() % N;
+                            secilenLokasyonlar[i] = { satir, sutun };  
+                        }
+                    }
+                    
+                    void ciz(char karakter, int adet) {
+                        for (int i = 0; i < adet; i++) {
+                            cout << karakter;
+                        }
+                        cout << endl;
+                    }
+                    
+                    void matrisiYazdir() {
+                        
+                        for (int i = 0; i < N; i++) {
+                            for (int j = 0; j < N; j++) {
+                                bool isBlue = false;
+                    
+                               
+                                if (ziyaretEdilen[i][j]) {
+                                    cout << "\033[32m" << matris[i][j] << "\033[0m" << "\t";  
+                                }
+                             
+                                else if (i == kNoktasi.first && j == kNoktasi.second) {
+                                    cout << "\033[31m" << "K" << "\033[0m" << "\t";  
+                                }
+                                else {
+                                   
+                                    for (int k = 0; k < secilenNoktalar; ++k) {
+                                        if (secilenLokasyonlar[k].first == i && secilenLokasyonlar[k].second == j) {
+                                            cout << "\033[34m" << matris[i][j] << "\033[0m" << "\t";  
+                                            isBlue = true;
+                                            break;
+                                        }
+                                    }
+                    
+                                    
+                                    if (!isBlue) {
+                                        cout << matris[i][j] << "\t";
+                                    }
+                                }
+                            }
+                            cout << endl;
+                        }
+                    
+                        
+                        cout << endl;
+                        ciz('-', 74);
+                        cout << "Talep Adresleri:" << endl;
+                        ciz('-', 74);
+                        for (int i = 0; i < secilenNoktalar; ++i) {
+                            int satir = secilenLokasyonlar[i].first;
+                            int sutun = secilenLokasyonlar[i].second;
+                    
+                            cout << "Konum " << i + 1 << ": (" << satir << ", " << sutun << ") - ";
+                            cout << "Adres: " << &matris[satir][sutun] << "  " << endl;
+                        }
+                    
+                       
+                        cout << endl << "Toplam maliyet: " << toplamMaliyet << endl;
+                    }
+                    
+                    void hareketEt() {
+                        
+                        for (int i = 0; i < secilenNoktalar; ++i) {
+                            int hedefSatir = secilenLokasyonlar[i].first;
+                            int hedefSutun = secilenLokasyonlar[i].second;
+                    
+                           
+                            while (kNoktasi.first != hedefSatir || kNoktasi.second != hedefSutun) {
+                                
+                                ziyaretEdilen[kNoktasi.first][kNoktasi.second] = true;
+                    
+                                
+                                toplamMaliyet += matris[kNoktasi.first][kNoktasi.second];
+                    
+                                if (kNoktasi.first < hedefSatir) {
+                                    kNoktasi.first++;  
+                                }
+                                else if (kNoktasi.first > hedefSatir) {
+                                    kNoktasi.first--;  
+                                }
+                    
+                                if (kNoktasi.second < hedefSutun) {
+                                    kNoktasi.second++;    
+                                }
+                                else if (kNoktasi.second > hedefSutun) {
+                                    kNoktasi.second--;    
+                                }
+                    
+                                matrisiYazdir(); 
+                                cout << "Devam etmek için Enter'a basın..." << endl;
+                                cin.get();  
+                                cout << "\033[H\033[J"; 
+                            }
+                        }
+                    
+                    
+                        while (kNoktasi.first != 0 || kNoktasi.second != 0) {
+                      
+                            ziyaretEdilen[kNoktasi.first][kNoktasi.second] = true;
+                    
+                          
+                            toplamMaliyet += matris[kNoktasi.first][kNoktasi.second];
+                    
+                            if (kNoktasi.first > 0) {
+                                kNoktasi.first--;  
+                            }
+                            else if (kNoktasi.second > 0) {
+                                kNoktasi.second--;  
+                            }
+                    
+                            matrisiYazdir(); 
+                            cout << "Devam etmek için Enter'a basın..." << endl;
+                            cin.get();  
+                            cout << "\033[H\033[J"; 
+                        }
+                    
+                        
+                        matrisiYazdir();
+                    }
+                    
+                    //Dosyayı yazdırıyoruz.
+                    void dosyayaKaydet() {
+                        ofstream outputFile("cost.txt");  
+                    
+                        if (outputFile.is_open()) {
+                            
+                            outputFile << "Talep Adresleri:" << endl;
+                            for (int i = 0; i < secilenNoktalar; ++i) {
+                                int satir = secilenLokasyonlar[i].first;
+                                int sutun = secilenLokasyonlar[i].second;
+                    
+                                outputFile << "Konum " << i + 1 << ": (" << satir << ", " << sutun << ") - ";
+                                outputFile << "Adres: " << &matris[satir][sutun] << "  " << endl;
+                            }
+                    
+                            
+                            outputFile << endl << "Toplam maliyet: " << toplamMaliyet << endl;
+                    
+                          
+                            outputFile.close();
+                            cout << "Veriler 'cost.txt' dosyasına kaydedildi." << endl;
+                        }
+                        else {
+                            cout << "Dosya açılamadı!" << endl;
+                        }
+                    }
+                </code>
+            </pre>
+        </div>
+      </main>
+
+    <footer class="footer">
+        <a href="index.html" class="btn"> Geri Dön </a>
+    </footer>
+  </body>
+</html>
